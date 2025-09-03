@@ -1,0 +1,112 @@
+@import url('https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300;400;500;600;700&display=swap');
+
+.CPU-container {
+    width: 30vw;
+    height: 15vw;
+    padding: 1rem;
+    background: #000000;
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0);
+    position: fixed;
+    top: 8vw;
+    left: 21vw;
+}
+
+.MEMORY_container {
+    width: 30vw;
+    height: 15vw;
+    padding: 1rem;
+    background: #000000;
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0);
+    position: fixed;
+    top: 27vw;
+    left: 21vw;
+}
+
+.NETWORK_container {
+    width: 30vw;
+    height: 15vw;
+    padding: 1rem;
+    background: #000000;
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0);
+    position: fixed;
+    top: 27vw;
+    left: 60vw;
+}
+
+.DISK_container {
+    width: 30vw;
+    height: 15vw;
+    padding: 1rem;
+    background: #000000;
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0);
+    position: fixed;
+    top: 8vw;
+    left: 60vw;
+}
+
+body {
+    background-image: url('images/BYTE-BEAST_background.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.logo {
+    max-width: 12.5vw;
+    height: auto;
+    position: fixed;
+    top: 1vw;
+    left: 2vw;
+    z-index: 1001;
+}
+
+.logo-background {
+  position: fixed;
+  top: 5vw;
+  left: 0vw;
+  width: 20vw;
+  height: 20vw;
+  background-color: #000000; /* Solid color */
+  clip-path: polygon(-20% 4%, 0% 50%, 75% 50%, 101% 2%);
+  z-index: -2; /* Place behind the logo image */
+}
+
+.nav { 
+    background-color: rgb(0, 0, 0);  /* navbar background */
+    width: 100%;                     /* stretch full width */
+    position: fixed;                  /* stays at top when scrolling */
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+.nav ul {
+    display: flex;
+    justify-content: stretch; /* stretch items evenly */
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    width: 100%;
+}
+
+.nav li {
+    flex: 1; /* each button takes equal width */
+}
+
+.nav a {
+    display: block;
+    color: white;
+    text-decoration: none;
+    padding: 1vw 0; /* vertical padding, no horizontal */
+    font-size: 3vw;
+    font-family: 'Hanken Grotesk', sans-serif;
+    text-align: center; /* center text inside buttons */
+}
+
+.nav a:hover {
+    background-color: rgb(4, 170, 109); /* hover effect */
+}
+
