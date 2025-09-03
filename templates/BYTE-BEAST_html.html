@@ -1,35 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>BYTE BEAST</title>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link rel="stylesheet" href="{{ url_for('static', filename='BYTE-BEAST_css.css') }}">
-    <link rel="icon" type="image/x-icon" href="static\images\BYTE-BEAST_logo.png">
-</head>
-<body>
-    <div class="logo-background"></div>
-    <img src="static\images\BYTE-BEAST_logo.png" alt="Byte Beast Logo" class="logo">
-    <div class="CPU-container">
-        <canvas id="CPU_chart"></canvas>
-    </div>
-    <div class="MEMORY_container">
-        <canvas id="MEMORY_chart"></canvas>
-    </div>
-    <div class="NETWORK_container">
-        <canvas id="NETWORK_chart"></canvas>
-    </div>
-    <div class="DISK_container">
-        <canvas id="DISK_chart"></canvas>
-    </div>
-    <div class="nav">
-      <ul>
-        <li><a class="button btn1">CPU</a></li>
-        <li><a class="button">MEMORY</a></li>
-        <li><a class="button">DISK</a></li>
-        <li><a class="button">NETWORK</a></li>
-      </ul>
-    </div>
-    <script src="{{ url_for('static', filename='BYTE-BEAST_javascript.js') }}"></script>
-</body>
+<div class="page">
+    <head>
+        <meta charset="UTF-8">
+        <title>BYTE BEAST</title>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <link rel="stylesheet" href="{{ url_for('static', filename='BYTE-BEAST_css.css') }}">
+        <link rel="icon" type="image/x-icon" href="static\images\BYTE-BEAST_logo.png">
+    </head>
+    <body>
+        <div class="logo-background"></div>
+        <img src="static\images\BYTE-BEAST_logo.png" alt="Byte Beast Logo" class="logo">
+        <div class="CPU-container">
+            <canvas id="CPU_chart"></canvas>
+        </div>
+        <div class="MEMORY_container">
+            <canvas id="MEMORY_chart"></canvas>
+        </div>
+        <div class="NETWORK_container">
+            <canvas id="NETWORK_chart"></canvas>
+        </div>
+        <div class="DISK_container">
+            <canvas id="DISK_chart"></canvas>
+        </div>
+        <div class="nav">
+        <ul>
+            <li><a class="button btn1">CPU</a></li>
+            <li><a class="button">MEMORY</a></li>
+            <li><a class="button">DISK</a></li>
+            <li><a class="button">NETWORK</a></li>
+        </ul>
+        </div>
+        <script src="{{ url_for('static', filename='BYTE-BEAST_javascript.js') }}"></script>
+    </body>
+</div>
 </html>

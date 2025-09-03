@@ -3,7 +3,7 @@
 .CPU-container {
     width: 30vw;
     height: 15vw;
-    padding: 1rem;
+    padding: 1vw;
     background: #000000;
     border-radius: 12px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0);
@@ -15,7 +15,7 @@
 .MEMORY_container {
     width: 30vw;
     height: 15vw;
-    padding: 1rem;
+    padding: 1vw;
     background: #000000;
     border-radius: 12px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0);
@@ -27,7 +27,7 @@
 .NETWORK_container {
     width: 30vw;
     height: 15vw;
-    padding: 1rem;
+    padding: 1vw;
     background: #000000;
     border-radius: 12px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0);
@@ -39,7 +39,7 @@
 .DISK_container {
     width: 30vw;
     height: 15vw;
-    padding: 1rem;
+    padding: 1vw;
     background: #000000;
     border-radius: 12px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0);
@@ -52,6 +52,14 @@ body {
     background-image: url('images/BYTE-BEAST_background.jpg');
     background-size: cover;
     background-repeat: no-repeat;
+}
+
+.page {
+    position: fixed;
+    max-width: 100%;
+    max-height: fit-content;
+    aspect-ratio: 16 / 9;
+    margin: auto;
 }
 
 .logo {

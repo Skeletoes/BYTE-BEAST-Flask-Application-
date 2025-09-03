@@ -1,7 +1,10 @@
 from flask import Flask, render_template, jsonify
 import psutil
 import time
+from flaskwebgui import FlaskUI
+
 app = Flask(__name__)
+
 cpu_stats = []
 cpu_time = []
 memory_stats = []
@@ -103,4 +106,5 @@ def disk_data():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    # app.run(debug=True)
+    FlaskUI(app=app, server="flask", width=800, height=480).run()
