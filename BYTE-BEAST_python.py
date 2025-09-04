@@ -2,9 +2,7 @@ from flask import Flask, render_template, jsonify
 import psutil
 import time
 from flaskwebgui import FlaskUI
-import threading
 import webbrowser
-import requests
 
 app = Flask(__name__)
 
@@ -107,16 +105,11 @@ def disk_data():
 
     return jsonify({'diskRead_labels': diskRead_labels, 'diskWrite_labels': diskWrite_labels, 'disk_data': disk_data})
 
-def wait_for_server():
-    while True:
-        try:
-            requests.get("http://127.0.0.1:5000")
-            break
-        except:
-            time.sleep(0.5)
+def open_browser():
+    time.sleep(1)
     webbrowser.open("http://127.0.0.1:5000")
 
 if __name__ == '__main__':
-    # app.run(debug=True)\
-    threading.Thread(target=wait_for_server).start()
-    FlaskUI(app=app, server="flask", width=800, height=480).run()
+    ui = FlaskUI(app=app, server="flask", width=800, height=480)
+    ui.start_server = open_browser
+    ui.run()
