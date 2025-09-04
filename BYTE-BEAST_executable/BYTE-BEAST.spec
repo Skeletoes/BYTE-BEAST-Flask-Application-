@@ -35,5 +35,5 @@ exe = EXE(
     target_arch=None,
     codesign_identity=None,
     entitlements_file=None,
-    icon=['BYTE-BEAST_favicon.ico'],
+    icon=['static\\images\\BYTE-BEAST_favicon.ico'],
 )
