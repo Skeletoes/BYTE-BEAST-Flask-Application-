@@ -27,6 +27,10 @@ def homepage():
 def cpu_data():
     cpu_percent = psutil.cpu_percent(interval=0.1)
     cpu_stats.append(cpu_percent)
+    cpu_freq1 = psutil.cpu_freq()
+    cpu_freq2 = cpu_freq1.current
+    cpu_cores = psutil.cpu_count(logical=True)
+    cpu_physicalCores = psutil.cpu_count(logical=False)
 
     cpu_time1 = time.time()
     cpu_time2 = time.ctime(cpu_time1)
@@ -36,7 +40,7 @@ def cpu_data():
     cpu_labels = cpu_stats[-30:]
     time.sleep(0.2)
 
-    return jsonify({'cpu_labels': cpu_labels, 'cpu_data': cpu_data})
+    return jsonify({'cpu_labels': cpu_labels, 'cpu_data': cpu_data, 'cpu_frequency': cpu_freq2, 'cpu_cores': cpu_cores, 'cpu_physicalCores': cpu_physicalCores})
 
 @app.route('/memory-data')
 def memory_data():
@@ -49,7 +53,7 @@ def memory_data():
 
     memory_data = memory_time[-30:]
     memory_labels = memory_stats[-30:]
-    time.sleep(0.2)
+    time.sleep(0.3)
 
     return jsonify({'memory_labels': memory_labels, 'memory_data': memory_data})
 
@@ -108,19 +112,19 @@ def disk_data():
     return jsonify({'diskRead_labels': diskRead_labels, 'diskWrite_labels': diskWrite_labels, 'disk_data': disk_data})
 
 # Uncomment to auto-open browser when server starts
-#def open_browser_when_ready(url): 
-#    import time, requests, webbrowser
-#    for _ in range(60):  # Try for up to 30 seconds
-#        try:
-#            requests.get(url)
-#            webbrowser.open(url)
-#            return
-#        except Exception:
-#            time.sleep(0.5)
+def open_browser_when_ready(url): 
+    import time, requests, webbrowser
+    for _ in range(60):  # Try for up to 30 seconds
+        try:
+            requests.get(url)
+            webbrowser.open(url)
+            return
+        except Exception:
+            time.sleep(0.5)
 
 if __name__ == '__main__':
     #Uncomment to auto-open browser when server starts
-    #threading.Thread(target=open_browser_when_ready, args=("http://127.0.0.1:8000",)).start()
-    #FlaskUI(app=app, server="flask", width=800, height=480, port=8000, browser_path=None).run()
-    FlaskUI(app=app, server="flask", width=800, height=480, port=8000).run()
+    threading.Thread(target=open_browser_when_ready, args=("http://127.0.0.1:8000",)).start()
+    FlaskUI(app=app, server="flask", width=800, height=480, port=8000, browser_path=None).run()
+    #FlaskUI(app=app, server="flask", width=800, height=480, port=8000).run()
 

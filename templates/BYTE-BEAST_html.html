@@ -23,12 +23,32 @@
             <canvas id="DISK_chart"></canvas>
         </div>
         <div class="nav">
-        <ul>
-            <li><a class="button btn1">CPU</a></li>
-            <li><a class="button">MEMORY</a></li>
-            <li><a class="button">DISK</a></li>
-            <li><a class="button">NETWORK</a></li>
-        </ul>
+            <ul>
+                <li class="dropdown">
+                    <a href="javascript:void(0)" class="dropbtn">CPU</a>
+                    <div class="dropdown-content" id="cpu-dropdown">
+                        <!-- Live stats will be inserted here -->
+                    </div>
+                </li>
+                <li class="dropdown">
+                    <a href="javascript:void(0)" class="dropbtn">MEMORY</a>
+                    <div class="dropdown-content" id="memory-dropdown">
+                        <!-- Live stats will be inserted here -->
+                    </div>
+                </li>
+                <li class="dropdown">
+                    <a href="javascript:void(0)" class="dropbtn">DISK</a>
+                    <div class="dropdown-content" id="disk-dropdown">
+                        <!-- Live stats will be inserted here -->
+                    </div>
+                </li>
+                <li class="dropdown">
+                    <a href="javascript:void(0)" class="dropbtn">NETWORK</a>
+                    <div class="dropdown-content" id="network-dropdown">
+                        <!-- Live stats will be inserted here -->
+                    </div>
+                </li>
+            </ul>
         </div>
         <script src="{{ url_for('static', filename='BYTE-BEAST_javascript.js') }}"></script>
     </body>

@@ -177,6 +177,13 @@ function fetchData() {
             CPU_chart.data.labels = json.cpu_data;
             CPU_chart.data.datasets[0].data = json.cpu_labels;
             CPU_chart.update();
+
+            // Update CPU dropdown
+            updateDropdown('cpu-dropdown', [
+                `Cores: ${json.cpu_cores}`,
+                `Physical Cores: ${json.cpu_physicalCores}`,
+                `Frequency: ${json.cpu_frequency} MHz`
+            ]);
         });
     fetch('/memory-data')
         .then(response => response.json())
@@ -184,6 +191,13 @@ function fetchData() {
             MEMORY_chart.data.labels = json.memory_data;
             MEMORY_chart.data.datasets[0].data = json.memory_labels;
             MEMORY_chart.update();
+
+            // Update Memory dropdown
+            updateDropdown('memory-dropdown', [
+                `Total: ${json.total} MB`,
+                `Used: ${json.used} MB`,
+                `Available: ${json.available} MB`
+            ]);
         });
     fetch('/network-data')
         .then(response => response.json())
@@ -192,6 +206,12 @@ function fetchData() {
             NETWORK_chart.data.datasets[0].data = json.networkIn_labels;
             NETWORK_chart.data.datasets[1].data = json.networkOut_labels;
             NETWORK_chart.update();
+
+            // Update Network dropdown
+            updateDropdown('network-dropdown', [
+                `Download: ${json.download} KB/s`,
+                `Upload: ${json.upload} KB/s`
+            ]);
         });
     fetch('/disk-data')
         .then(response => response.json())
@@ -200,7 +220,25 @@ function fetchData() {
             DISK_chart.data.datasets[0].data = json.diskRead_labels;
             DISK_chart.data.datasets[1].data = json.diskWrite_labels;
             DISK_chart.update();
+
+            // Update Disk dropdown
+            updateDropdown('disk-dropdown', [
+                `Read: ${json.read} MB/s`,
+                `Write: ${json.write} MB/s`
+            ]);
         });
+}
+
+function updateDropdown(id, stats) {
+    const dropdown = document.getElementById(id);
+    if (!dropdown) return;
+    dropdown.innerHTML = '';
+    stats.forEach(stat => {
+        const statElem = document.createElement('a');
+        statElem.href = '#';
+        statElem.textContent = stat;
+        dropdown.appendChild(statElem);
+    });
 }
 
 
@@ -210,3 +248,4 @@ fetchData();
 
 // Poll every second
 setInterval(fetchData, 1000);
+
