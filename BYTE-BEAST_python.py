@@ -108,7 +108,7 @@ def disk_data():
     return jsonify({'diskRead_labels': diskRead_labels, 'diskWrite_labels': diskWrite_labels, 'disk_data': disk_data})
 
 def wait_for_server():
-    url = "http://127.0.0.1:5000"
+    url = "http://127.0.0.1"
     while True:
         try:
             requests.get(url)
