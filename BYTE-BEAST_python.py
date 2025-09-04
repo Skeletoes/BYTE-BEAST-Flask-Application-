@@ -107,17 +107,16 @@ def disk_data():
 
     return jsonify({'diskRead_labels': diskRead_labels, 'diskWrite_labels': diskWrite_labels, 'disk_data': disk_data})
 
-def wait_for_server():
-    url = "http://127.0.0.1"
-    while True:
+def open_browser_when_ready(url):
+    for _ in range(20):  # Try for ~10 seconds
         try:
             requests.get(url)
-            break
-        except:
+            webbrowser.open(url)
+            return
+        except Exception:
             time.sleep(0.5)
-    time.sleep(0.5)  # Optional buffer
-    webbrowser.open(url)
 
 if __name__ == '__main__':
-    threading.Thread(target=wait_for_server, daemon=True).start()
-    FlaskUI(app=app, server="flask", width=800, height=480).run()
+    threading.Thread(target=open_browser_when_ready, args=("http://127.0.0.1:8000",)).start()
+    FlaskUI(app=app, server="flask", width=800, height=480, port=8000).run()
+
