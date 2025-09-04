@@ -54,14 +54,6 @@ body {
     background-repeat: no-repeat;
 }
 
-.page {
-    position: fixed;
-    max-width: 100%;
-    max-height: fit-content;
-    aspect-ratio: 16 / 9;
-    margin: auto;
-}
-
 .logo {
     max-width: 12.5vw;
     height: auto;
