@@ -115,19 +115,19 @@ def disk_data():
     return jsonify({'diskRead_labels': diskRead_labels, 'diskWrite_labels': diskWrite_labels, 'disk_data': disk_data})
 
 # Uncomment to auto-open browser when server starts
-def open_browser_when_ready(url): 
-    import time, requests, webbrowser
-    for _ in range(60):  # Try for up to 30 seconds
-        try:
-            requests.get(url)
-            webbrowser.open(url)
-            return
-        except Exception:
-            time.sleep(0.5)
+#def open_browser_when_ready(url): 
+#    import time, requests, webbrowser
+#    for _ in range(60):  # Try for up to 30 seconds
+#        try:
+#            requests.get(url)
+#            webbrowser.open(url)
+#            return
+#        except Exception:
+#            time.sleep(0.5)
 
 if __name__ == '__main__':
     #Uncomment to auto-open browser when server starts
-    threading.Thread(target=open_browser_when_ready, args=("http://127.0.0.1:8000",)).start()
-    FlaskUI(app=app, server="flask", width=800, height=480, port=8000, browser_path=None).run()
-    #FlaskUI(app=app, server="flask", width=800, height=480, port=8000).run()
+    #threading.Thread(target=open_browser_when_ready, args=("http://127.0.0.1:8000",)).start()
+    #FlaskUI(app=app, server="flask", width=800, height=480, port=8000, browser_path=None).run()
+    FlaskUI(app=app, server="flask", width=800, height=480, port=8000).run()
 
