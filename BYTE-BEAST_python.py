@@ -46,6 +46,9 @@ def cpu_data():
 def memory_data():
     memory_percent = psutil.virtual_memory().percent
     memory_stats.append(memory_percent)
+    memory_available = psutil.virtual_memory().available // (1024 * 1024)
+    memory_total = psutil.virtual_memory().total // (1024 * 1024)
+    memory_used = psutil.virtual_memory().used // (1024 * 1024)
 
     memory_time1 = time.time()
     memory_time2 = time.ctime(memory_time1)
@@ -55,7 +58,7 @@ def memory_data():
     memory_labels = memory_stats[-30:]
     time.sleep(0.3)
 
-    return jsonify({'memory_labels': memory_labels, 'memory_data': memory_data})
+    return jsonify({'memory_labels': memory_labels, 'memory_data': memory_data, 'memory_available': memory_available, 'memory_total': memory_total, 'memory_used': memory_used})
 
 @app.route('/network-data')
 def network_data():

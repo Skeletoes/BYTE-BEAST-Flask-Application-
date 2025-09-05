@@ -194,9 +194,9 @@ function fetchData() {
 
             // Update Memory dropdown
             updateDropdown('memory-dropdown', [
-                `Total: ${json.total} MB`,
-                `Used: ${json.used} MB`,
-                `Available: ${json.available} MB`
+                `Total: ${json.memory_total} MB`,
+                `Used: ${json.memory_used} MB`,
+                `Available: ${json.memory_available} MB`
             ]);
         });
     fetch('/network-data')
