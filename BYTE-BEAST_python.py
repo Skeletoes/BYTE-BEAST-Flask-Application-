@@ -36,8 +36,8 @@ def cpu_data():
     cpu_time2 = time.ctime(cpu_time1)
     cpu_time.append(cpu_time2[11:19])
     
-    cpu_data = cpu_time[-30:]
-    cpu_labels = cpu_stats[-30:]
+    cpu_data = cpu_time[-10:]
+    cpu_labels = cpu_stats[-10:]
     time.sleep(0.2)
 
     return jsonify({'cpu_labels': cpu_labels, 'cpu_data': cpu_data, 'cpu_frequency': cpu_freq2, 'cpu_cores': cpu_cores, 'cpu_physicalCores': cpu_physicalCores})
@@ -54,8 +54,8 @@ def memory_data():
     memory_time2 = time.ctime(memory_time1)
     memory_time.append(memory_time2[11:19])
 
-    memory_data = memory_time[-30:]
-    memory_labels = memory_stats[-30:]
+    memory_data = memory_time[-10:]
+    memory_labels = memory_stats[-10:]
     time.sleep(0.3)
 
     return jsonify({'memory_labels': memory_labels, 'memory_data': memory_data, 'memory_available': memory_available, 'memory_total': memory_total, 'memory_used': memory_used})
@@ -73,6 +73,8 @@ def network_data():
     
     bytesIn = bytesIn2 - bytesIn1
     bytesOut = bytesOut2 - bytesOut1
+    packetsSent = network.packets_sent
+    packetsRecv = network.packets_recv
 
     networkIn_stats.append(bytesIn)
     networkOut_stats.append(bytesOut)
@@ -81,11 +83,11 @@ def network_data():
     network_time2 = time.ctime(network_time1)
     network_time.append(network_time2[11:19])
 
-    network_data = network_time[-30:]
-    networkIn_labels = networkIn_stats[-30:]
-    networkOut_labels = networkOut_stats[-30:]
+    network_data = network_time[-10:]
+    networkIn_labels = networkIn_stats[-10:]
+    networkOut_labels = networkOut_stats[-10:]
 
-    return jsonify({'networkIn_labels': networkIn_labels, 'networkOut_labels': networkOut_labels, 'network_data': network_data})
+    return jsonify({'networkIn_labels': networkIn_labels, 'networkOut_labels': networkOut_labels, 'network_data': network_data, 'packetsSent': packetsSent, 'packetsRecv': packetsRecv})
 
 @app.route('/disk-data')
 def disk_data():
@@ -100,6 +102,9 @@ def disk_data():
 
     bytes_read = bytes_read2 - bytes_read1
     bytes_write = bytes_write2 - bytes_write1
+    disk_available = psutil.disk_usage('/').free // (1024 * 1024)
+    disk_total = psutil.disk_usage('/').total // (1024 * 1024)
+    disk_used = psutil.disk_usage('/').used // (1024 * 1024)
 
     diskRead_stats.append(bytes_read)
     diskWrite_stats.append(bytes_write)
@@ -108,11 +113,28 @@ def disk_data():
     diskTime2 = time.ctime(diskTime1)
     disk_time.append(diskTime2[11:19])
 
-    disk_data = disk_time[-30:]
-    diskRead_labels = diskRead_stats[-30:]
-    diskWrite_labels = diskWrite_stats[-30:]
+    disk_data = disk_time[-10:]
+    diskRead_labels = diskRead_stats[-10:]
+    diskWrite_labels = diskWrite_stats[-10:]
 
-    return jsonify({'diskRead_labels': diskRead_labels, 'diskWrite_labels': diskWrite_labels, 'disk_data': disk_data})
+    return jsonify({'diskRead_labels': diskRead_labels, 'diskWrite_labels': diskWrite_labels, 'disk_data': disk_data, 'disk_available': disk_available, 'disk_total': disk_total, 'disk_used': disk_used})
+
+@app.route('/process-data')
+def process_data():
+    processes = []
+    for proc in psutil.process_iter(['pid', 'name']):
+        try:
+            cpu = proc.cpu_percent(interval=0.1)
+            mem = proc.memory_percent()
+            processes.append({
+                'name': proc.info['name'],
+                'pid': proc.info['pid'],
+                'cpu': round(cpu, 1),
+                'memory': round(mem, 1)
+            })
+        except (psutil.NoSuchProcess, psutil.AccessDenied):
+            continue
+    return jsonify(processes)
 
 # Uncomment to auto-open browser when server starts
 #def open_browser_when_ready(url): 

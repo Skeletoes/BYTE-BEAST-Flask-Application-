@@ -9,7 +9,10 @@
     </head>
     <body>
         <div class="logo-background"></div>
-        <img src="static\images\BYTE-BEAST_logo.png" alt="Byte Beast Logo" class="logo">
+        <img src="static\images\BYTE-BEAST_logo.png" alt="Byte Beast Logo" class="logo">'
+        <div class="dropdown-content" id="process-dropdown">
+
+        </div>'
         <div class="CPU-container">
             <canvas id="CPU_chart"></canvas>
         </div>
@@ -50,6 +53,7 @@
                 </li>
             </ul>
         </div>
+
         <script src="{{ url_for('static', filename='BYTE-BEAST_javascript.js') }}"></script>
     </body>
 </html>

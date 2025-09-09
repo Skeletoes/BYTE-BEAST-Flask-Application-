@@ -209,8 +209,8 @@ function fetchData() {
 
             // Update Network dropdown
             updateDropdown('network-dropdown', [
-                `Download: ${json.download} KB/s`,
-                `Upload: ${json.upload} KB/s`
+                `Packets Received: ${json.packetsRecv}`,
+                `Packets Sent: ${json.packetsSent}`
             ]);
         });
     fetch('/disk-data')
@@ -223,8 +223,9 @@ function fetchData() {
 
             // Update Disk dropdown
             updateDropdown('disk-dropdown', [
-                `Read: ${json.read} MB/s`,
-                `Write: ${json.write} MB/s`
+                `Total: ${json.disk_total} MB`,
+                `Used: ${json.disk_used} MB`,
+                `Available: ${json.disk_available} MB`
             ]);
         });
 }
@@ -241,11 +242,23 @@ function updateDropdown(id, stats) {
     });
 }
 
+async function fetchProcesses() {
+    const res = await fetch('/process-data');
+    const data = await res.json();
+    const container = document.getElementById('process-dropdown');
+    container.innerHTML = '';
 
+    data.forEach(proc => {
+        const div = document.createElement('a');
+        div.textContent = `${proc.name} | CPU: ${proc.cpu}% | MEM: ${proc.memory}%`;
+        container.appendChild(div);
+    });
+}
 
-// Initial fetch
+fetchProcesses();
+setInterval(fetchProcesses, 5000);
+
 fetchData();
 
-// Poll every second
 setInterval(fetchData, 1000);
 
