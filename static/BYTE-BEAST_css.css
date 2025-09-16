@@ -8,8 +8,8 @@
     border-radius: 12px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0);
     position: fixed;
-    top: 8vw;
-    left: 21vw;
+    top: 9.5vw;
+    left: 25vw;
 }
 
 .MEMORY_container {
@@ -20,8 +20,8 @@
     border-radius: 12px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0);
     position: fixed;
-    top: 27vw;
-    left: 21vw;
+    top: 30.5vw;
+    left: 25vw;
 }
 
 .NETWORK_container {
@@ -32,8 +32,8 @@
     border-radius: 12px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0);
     position: fixed;
-    top: 27vw;
-    left: 60vw;
+    top: 30.5vw;
+    left: 63vw;
 }
 
 .DISK_container {
@@ -44,8 +44,8 @@
     border-radius: 12px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0);
     position: fixed;
-    top: 8vw;
-    left: 60vw;
+    top: 9.5vw;
+    left: 63vw;
 }
 
 body {
