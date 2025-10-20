@@ -1,17 +1,20 @@
+// Initialize CPU monitoring chart
+// Get the canvas context for CPU chart
 const CPU_graph = document.getElementById('CPU_chart').getContext('2d');
 
+// Configuration for CPU usage chart
 const CPU_config = {
-    type: 'line',
+    type: 'line',                    // Line chart type for time series data
     data: {
-        labels: [],
+        labels: [],                  // X-axis timestamps
         datasets: [{
-            label: 'CPU Usage (%)',
-            backgroundColor: 'rgb(4, 170, 109)',
-            borderColor: 'rgb(4, 170, 109)',
-            data: [],
-            fill: true,
-            tension: 0.3,
-            animation: false,
+            label: 'CPU Usage (%)',  // Chart legend label
+            backgroundColor: 'rgb(4, 170, 109)',  // Area fill color
+            borderColor: 'rgb(4, 170, 109)',      // Line color
+            data: [],                // CPU usage percentage data
+            fill: true,             // Fill area under the line
+            tension: 0.3,           // Curve smoothing
+            animation: false,        // Disable animations for performance
         }]
     },
     options: {
@@ -170,19 +173,22 @@ const DISK_config = {
 
 const DISK_chart = new Chart(DISK_graph, DISK_config);
 
+// Fetch and update all system metrics data
 function fetchData() {
+    // Fetch CPU statistics
     fetch('/cpu-data')
         .then(response => response.json())
         .then(json => {
+            // Update CPU chart with new data
             CPU_chart.data.labels = json.cpu_data;
             CPU_chart.data.datasets[0].data = json.cpu_labels;
             CPU_chart.update();
 
-            // Update CPU dropdown
+            // Update CPU dropdown with detailed information
             updateDropdown('cpu-dropdown', [
-                `Cores: ${json.cpu_cores}`,
-                `Physical Cores: ${json.cpu_physicalCores}`,
-                `Frequency: ${json.cpu_frequency} MHz`
+                `Cores: ${json.cpu_cores}`,                    // Total logical cores
+                `Physical Cores: ${json.cpu_physicalCores}`,   // Physical CPU cores
+                `Frequency: ${json.cpu_frequency} MHz`         // Current CPU frequency
             ]);
         });
     fetch('/memory-data')
@@ -230,10 +236,16 @@ function fetchData() {
         });
 }
 
+// Update dropdown menu content with new statistics
 function updateDropdown(id, stats) {
+    // Get dropdown container element
     const dropdown = document.getElementById(id);
-    if (!dropdown) return;
+    if (!dropdown) return;  // Exit if dropdown doesn't exist
+    
+    // Clear existing content
     dropdown.innerHTML = '';
+    
+    // Create and append new stat elements
     stats.forEach(stat => {
         const statElem = document.createElement('a');
         statElem.href = '#';

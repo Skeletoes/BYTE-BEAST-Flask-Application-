@@ -1,59 +1,78 @@
+<!-- BYTE BEAST - System Resource Monitor Interface -->
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        <!-- Basic meta settings -->
         <meta charset="UTF-8">
         <title>BYTE BEAST</title>
+        <!-- Chart.js library for data visualization -->
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <!-- Custom styles -->
         <link rel="stylesheet" href="{{ url_for('static', filename='BYTE-BEAST_css.css') }}">
+        <!-- Favicon -->
         <link rel="icon" type="image/x-icon" href="static\images\BYTE-BEAST_favicon.ico">
     </head>
     <body>
+        <!-- Logo and branding elements -->
         <div class="logo-background"></div>
         <img src="static\images\BYTE-BEAST_logo.png" alt="Byte Beast Logo" class="logo">'
+        <!-- Process information dropdown container -->
         <div class="dropdown-content" id="process-dropdown">
-
+            <!-- Dynamic process list will be inserted here by JavaScript -->
         </div>'
+        
+        <!-- Chart containers for system metrics -->
+        <!-- CPU usage chart -->
         <div class="CPU-container">
             <canvas id="CPU_chart"></canvas>
         </div>
+        <!-- Memory usage chart -->
         <div class="MEMORY_container">
             <canvas id="MEMORY_chart"></canvas>
         </div>
+        <!-- Network traffic chart -->
         <div class="NETWORK_container">
             <canvas id="NETWORK_chart"></canvas>
         </div>
+        <!-- Disk I/O chart -->
         <div class="DISK_container">
             <canvas id="DISK_chart"></canvas>
         </div>
+        <!-- Navigation and dropdown menu for detailed system metrics -->
         <div class="nav">
             <ul>
+                <!-- CPU information dropdown -->
                 <li class="dropdown">
                     <a href="javascript:void(0)" class="dropbtn">CPU</a>
                     <div class="dropdown-content" id="cpu-dropdown">
-                        <!-- Live stats will be inserted here -->
+                        <!-- Live CPU stats (frequency, cores, usage) will be inserted here -->
                     </div>
                 </li>
+                <!-- Memory information dropdown -->
                 <li class="dropdown">
                     <a href="javascript:void(0)" class="dropbtn">MEMORY</a>
                     <div class="dropdown-content" id="memory-dropdown">
-                        <!-- Live stats will be inserted here -->
+                        <!-- Live memory stats (total, used, available) will be inserted here -->
                     </div>
                 </li>
+                <!-- Disk information dropdown -->
                 <li class="dropdown">
                     <a href="javascript:void(0)" class="dropbtn">DISK</a>
                     <div class="dropdown-content" id="disk-dropdown">
-                        <!-- Live stats will be inserted here -->
+                        <!-- Live disk stats (I/O, space usage) will be inserted here -->
                     </div>
                 </li>
+                <!-- Network information dropdown -->
                 <li class="dropdown">
                     <a href="javascript:void(0)" class="dropbtn">NETWORK</a>
                     <div class="dropdown-content" id="network-dropdown">
-                        <!-- Live stats will be inserted here -->
+                        <!-- Live network stats (throughput, packets) will be inserted here -->
                     </div>
                 </li>
             </ul>
         </div>
 
+        <!-- Main application JavaScript code -->
         <script src="{{ url_for('static', filename='BYTE-BEAST_javascript.js') }}"></script>
     </body>
 </html>
